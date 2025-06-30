@@ -343,10 +343,15 @@ if __name__ == "__main__":
         store_graph(new_graph)
     graph = load_graph_from_pkl(os.path.join(base_dir, "..", "dag.pkl"))
     pr_results = page_rank(graph)
-    for crate_id, score in sorted(pr_results.items(), key=lambda x: -x[1])[:20]:
+    #ans = 0
+    for crate_id, score in sorted(pr_results.items(), key=lambda x: -x[1]):
+        #ans += 1
         name = graph.nodes[crate_id]['name']
         downloads = crate_latest_versions.get(crate_id, (None, None, None, 0))[3]
+        #if downloads == 544992427:
+        #    print(f"{name:<30} (id={crate_id:<6}): PR={score:.10f},{ans} Downloads={downloads}")
         print(f"{name:<30} (id={crate_id:<6}): PR={score:.10f}, Downloads={downloads}")
+
     '''
     is_dag = nx.is_directed_acyclic_graph(graph)
     try:
