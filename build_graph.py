@@ -344,7 +344,7 @@ if __name__ == "__main__":
     graph = load_graph_from_pkl(os.path.join(base_dir, "..", "dag.pkl"))
     pr_results = page_rank(graph)
     #ans = 0
-    for crate_id, score in sorted(pr_results.items(), key=lambda x: -x[1]):
+    for crate_id, score in sorted(pr_results.items(), key=lambda x: -x[1])[:30]:
         #ans += 1
         name = graph.nodes[crate_id]['name']
         downloads = crate_latest_versions.get(crate_id, (None, None, None, 0))[3]
